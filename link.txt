@@ -1,0 +1,2 @@
+url atualizar token:
+https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token={token_antigo}
