@@ -9,11 +9,15 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-        crossorigin="anonymous"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick-theme.css" />
+
+    <!--
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    -->
 
     <style>
         .instagram_feed_container {
@@ -53,16 +57,21 @@
             bottom: 0px;
         }
 
-        #insta {
+        /*
+        .insta {
             width: 100%;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            display: inline-block;
         }
 
-        #insta .instagram_post {
-            object-fit: fill;
+    }*/
+        .insta .instagram_post {
+            width: 20rem;
+            height: 20rem;
+        }
+
+        .insta .instagram_post img {
             width: 100%;
-            height: 250px;
+            height: 100%;
         }
     </style>
 
@@ -77,10 +86,21 @@
         <p>
             Sigam o nosso instagram
         </p>
-        <div id="insta">
+        <div class="insta">
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.7.1/slick.js"></script>
+    <!--
+        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    -->
     <script>
         $(function () {
             let REF = this;
@@ -96,15 +116,24 @@
                 let images_content = '';
 
                 images.forEach(({ caption, media_url }, index) => {
-                    if (index < 5) {
-                        images_content += `<img  src='${media_url}' draggable=false class="instagram_post" >`;
-                    }
+                    images_content += `<div class="instagram_post"><img  src='${media_url}' draggable=false ></div>`;
                 })
 
-                $('#insta').html(images_content);
+                $('.insta').html(images_content);
+
+                $('.insta').slick({
+                    dots: false,
+                    infinite: true,
+                    speed: 500,
+                    slidesToShow: 4,
+                    slidesToScroll: 4,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+                });
             });
 
         });
+
     </script>
 </body>
 
